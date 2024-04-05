@@ -6,6 +6,8 @@ import { ShopContext } from "@/context/shop-context";
 
 const Cart = () => {
     const context = useContext(ShopContext)
+    const totalAmount = Math.round((context?.getTotalCartAmount() ?? 0) * 100) / 100
+    
     const content = context !== null ? (
         <div className="cart">
             {context.items.map(item => {
@@ -23,13 +25,20 @@ const Cart = () => {
             <div>
                 <h1>カートの商品</h1>
             </div>
-            (content)
+            {content}
 
-            <div className="checkout">
-                <p>小計: xxxxx</p>
-                <button>買い物を続ける</button>
-                <button>チェックアウト</button>
-            </div>
+            {totalAmount > 0 ? (
+                <div className="checkout">
+                    <p className="total">合計: ${totalAmount}</p>
+                    <button
+                        onClick={() => {
+                            context?.checkout()
+                        }}
+                    >カートを空にする</button>
+                </div>
+            ) : (
+                <h1>cart is empty</h1>
+            )}
         </div>
     );
 }

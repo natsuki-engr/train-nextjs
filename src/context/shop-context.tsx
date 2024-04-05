@@ -46,6 +46,7 @@ export const ShopContextProvider: React.FC<{children: React.ReactNode}> = (props
                 }
             }
         }
+        return totalAmount
     }
 
     const addToCart = (itemId: number) => {
