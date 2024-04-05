@@ -1,20 +1,12 @@
 "use client"
-import React, { useEffect, useState } from "react"
-import './shop.css'
-import type { Item as ItemType } from "@/domains/item"
+import React, { useContext, useEffect, useState } from "react"
+import "./shop.css"
 import Item from "./item"
+import { ShopContext } from "@/context/shop-context"
+import { type Item as ItemType } from "@/domains/item"
 
 function Shop() {
-    const [items, setItems] = useState<ItemType[]>([])
-
-    useEffect(() => {
-        fetch("https://fakestoreapi.com/products")
-            .then(res => res.json())
-            .then((json: any) => {
-                console.log('json', json)
-                setItems(json)
-            })
-    }, [])
+    const context = useContext(ShopContext)
 
     return (
         <div className="shop">
@@ -23,7 +15,7 @@ function Shop() {
             </div>
 
             <div className="products">
-                {items.map(item => (
+                {context?.items.map((item: ItemType) => (
                     <Item
                         id={item.id}
                         title={item.title}
@@ -32,7 +24,7 @@ function Shop() {
                         description={item.description}
                         category={item.category}
                         key={item.id}
-                    ></Item>
+                    />
                 ))}
             </div>
         </div>
