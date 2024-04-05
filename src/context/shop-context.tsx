@@ -25,12 +25,12 @@ export const ShopContextProvider: React.FC<{children: React.ReactNode}> = (props
     const [items, setItems] = useState<Item[]>([]);
     useEffect(() => {
         fetch('https://fakestoreapi.com/products')
-            .then(res => res.json)
+            .then(res => res.json())
             .then((data: any) => {
                 console.log('data', data)
                 setItems(data as Item[])
             })
-    })
+    }, [])
     
     const [cartItems, setCartItems] = useState<Record<number, number>>(getDefaultCart())
 
