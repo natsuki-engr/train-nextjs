@@ -15,7 +15,7 @@ export const ShopContext = createContext<{
 const getDefaultCart = () => {
     const productsLength = 20
     let cart: Record<number, number> = {}
-    for(let i = 0; i < productsLength; i++) {
+    for(let i = 0; i < productsLength + 1; i++) {
         cart[i] = 0;
     }
 
