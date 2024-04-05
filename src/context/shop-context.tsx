@@ -3,12 +3,13 @@ import { createContext, useEffect, useState } from "react"
 import { Item } from "@/domains/item"
 
 export const ShopContext = createContext<{
-    cartItems: Record<number, number>,
-    getTotalCartAmount: Function,
-    addToCart: Function,
-    removeFromCart: Function,
-    updateCartItemCount: Function,
-    checkout: Function,
+    items: Item[]
+    cartItems: Record<number, number>
+    getTotalCartAmount: Function
+    addToCart: Function
+    removeFromCart: Function
+    updateCartItemCount: Function
+    checkout: Function
 } | null>(null)
 
 const getDefaultCart = () => {
@@ -64,6 +65,7 @@ export const ShopContextProvider: React.FC<{children: React.ReactNode}> = (props
     }
 
     const contextValue = {
+        items,
         cartItems,
         getTotalCartAmount,
         addToCart,

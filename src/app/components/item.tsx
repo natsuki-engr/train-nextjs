@@ -12,8 +12,9 @@ type props = {
 }
 
 const Item = ({ id, title, image, price, description, category }: props) => {
-    const { addToCart, cartItems } = useContext(ShopContext)
-    const cartItemCount  = cartItems[id]
+    const context = useContext(ShopContext)
+
+    const cartItemCount  = context?.cartItems[id] ?? 0
     
     return (
         <div key={id} className="product">
@@ -26,7 +27,7 @@ const Item = ({ id, title, image, price, description, category }: props) => {
                 <p className="description">{description}</p>
                 <p className="category">{category}</p>
             </div>
-            <button className="addToCartBtn" onClick={() => addToCart(id)}>
+            <button className="addToCartBtn" onClick={() => context?.addToCart(id)}>
                 カートに追加する {cartItemCount > 0  && <span>({cartItemCount}個)</span>}
             </button>
         </div>
