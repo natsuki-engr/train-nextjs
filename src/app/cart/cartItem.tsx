@@ -35,7 +35,8 @@ const CartItem = (props: CartItemComponentProps) => {
             <div className="description">
                 <p className="cartItemTitle">{title}</p>
                 <p>$ {price}</p>
-                (content)
+                {content}
+                <p className="subtotal">小計: ${price * (context?.cartItems[id] ?? 0)}</p>
             </div>
         </div>
     )
